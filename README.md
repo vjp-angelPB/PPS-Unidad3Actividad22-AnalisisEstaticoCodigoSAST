@@ -432,26 +432,6 @@ semgrep --config=files/custom-rules.yaml .
 
 ![](Images/img14.png)
 
----
-
-## Integración de reglas personalizadas con Github CI/CD
-
-Modificamos la ejecución de semgrep, en vez de  ejecutar con las reglas por defecto, lo hacemos con las reglas personalizadas.
-
-Para ello tenemos que indicarle que el conjunto de reglas a aplicar es el que hemos creado 
-
-modificar lineas del archivo ` .github/workflows/semgrep.yml`
-
-```yaml
-    - semgrep --config=auto --json --output=semgrep-results.json
-```
-
-por 
-
-```yaml
-    - semgrep --config=files/custom-rules.yaml  --json --output=semgrep-results.json
-```
-
 
 ## Recursos
 
