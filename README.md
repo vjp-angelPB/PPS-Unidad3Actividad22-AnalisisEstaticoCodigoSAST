@@ -1,25 +1,22 @@
 # PPS-Unidad3Actividad23-AnalisisEstaticoCodigoSAST
 Análisis de Código Estático con SAST (Static Application Security Testing)
 
-Esta actividad se corresponde con la actividad 22 de la Unidad de Aprendizaje 3 de Puesta en Producción Segura.
+Este contenido se corresponde con la actividad 22 de la Unidad de Aprendizaje 3 de Puesta en Producción Segura, vamos a ver la identificación de vulnerabilidades en código fuente.
 
-## Tema
-Identificación de vulnerabilidades en código fuente.
+## Objetivos
 
-## Objetivo
-
-- Usar SAST para detectar problemas de seguridad en el código sin ejecutarlo.
-- Conocer los qué es un entorno CI/CD: Integración Continua/Entrega Continua
+- Usar SAST para detectar problemas de seguridad en el código sin necesidad de ejecutarlo.
+- Conocer los entornos CI/CD: Integración Contínua/Entrega Contínua
 
 
-## ¿Qué es SAST?
+## SAST
 
-__SAST__ (Static Application Security Testing) es una __técnica que permite analizar el código fuente de una aplicación para detectar vulnerabilidades antes de su despliegue__. No requiere ejecutar el software, lo que permite encontrar errores de forma temprana en el ciclo de desarrollo.
+__SAST__ (Static Application Security Testing) es una __técnica que permite analizar el código fuente de una aplicación para detectar vulnerabilidades antes de su despliegue__. No requiere ejecutar el software, por lo que permite encontrar errores antes en el ciclo de desarrollo.
 
 
-## ¿Qué es Semgrep?
+## Semgrep
 
-__Semgrep__ (Security Enhanced Multi-Grep) es una herramienta de análisis estático de código fuente. A diferencia de `grep`, Semgrep entiende la estructura del código y es capaz de detectar patrones de vulnerabilidades y malas prácticas.
+__Semgrep__ (Security Enhanced Multi-Grep) es una herramienta de análisis estático de código fuente, a diferencia de `grep`, Semgrep entiende la estructura del código y es capaz de detectar patrones de vulnerabilidades y malas prácticas.
 
 
 ### Ventajas:
@@ -134,10 +131,9 @@ semgrep --config=auto .
 ![](Images/img3.png)
 
 
-Esperamos a que se muestren los resultados y vemos cómo nos aparecen 109 problemas:
+Esperamos a que se muestren los resultados, en esta ocasión muestra 15 problemas de código:
 
-
-![](Images/img4.png)
+![](Images/img6.png)
 
 
 ### Resultado:
@@ -148,7 +144,7 @@ Después de ejecutar el comando, Semgrep mostrará una lista de posibles vulnera
 - El tipo de riesgo detectado (XSS, Inyección NoSQL, CSRF, etc.).
 - Recomendaciones para corregir el problema. También nos indica la página web donde podemos encontrar la explicación de la regla
 
-![](Images/img5.png)
+![](Images/img6.png)
 
 Si pulsamos el enlace de la regla, nos llevará a la página de <https://sengreo.dev>, donde podemos encontrar información del problema y referencias a él.
 
@@ -159,20 +155,8 @@ En la siguiente captura vemos más detalles:
 ![](Images/img7.png)
 
 
-## Reglas OWASP Top 10
-
-
-Puedes usar reglas específicas del proyecto OWASP con:
-
-```bash
-semgrep --config "p/owasp-top-ten" .
-```
-
-Esto buscará vulnerabilidades basadas en las 10 amenazas más críticas de OWASP.
-
-En esta ocasión vemos que sólo hemos encontrado 44 problemas de esa categoría.
-
 ![](Images/img8.png)
+
 
 ---
 
@@ -237,12 +221,12 @@ __Herramientas populares de CI__:
 
 CD se divide en dos enfoques:
 
- __Entrega Continua (Continuous Delivery)__
+__Entrega Continua (Continuous Delivery)__
 
 Se asegura de que el código esté siempre listo para desplegarse, pero el despliegue es manual.
 Ejemplo: Una actualización está lista en producción, pero un ingeniero revisa y aprueba el despliegue.
 
- __Despliegue Continuo (Continuous Deployment)__
+__Despliegue Continuo (Continuous Deployment)__
 Automatiza completamente el despliegue de código a producción sin intervención manual.
 Ejemplo: Si las pruebas CI pasan, el código se despliega automáticamente en producción.
 
@@ -392,7 +376,7 @@ jobs:
 
 El análisis estático de Semgrep debería ejecutarse automáticamente en cada `push` a `main` o `develop`, o en cada `pull_request`, mostrando los resultados en la pestaña de Actions y guardando un reporte JSON como artefacto.
 
-![](Images/img10.png)
+![](Images/img9.png)
 
 ---
 
@@ -400,11 +384,9 @@ El análisis estático de Semgrep debería ejecutarse automáticamente en cada `
 
 Alli encontraremos el resultado de la ejecución de `semgrep`.
 
-![](Images/img11.png)
+![](Images/img10.png)
 
-Y podemos descargar el archivo .json con información sobre el resultado.
-
-![](Images/img12.png)
+Podemos descargarnos el archivo .json con información sobre el resultado obtenido, debaY podemos descargar el archivo .json con información sobre el resultado.
 
 Abajo podemos ver la información sobre el problema introducido por el uso de `eval()`
 
@@ -448,8 +430,6 @@ Vamos a realizar el análisis estático sobre nuestro repositorio `semgrep-prueb
 semgrep --config=files/custom-rules.yaml .
 ```
 Como vemos nos aparece el aviso indicado en la regla.
-
-![](Images/img14.png)
 
 
 ---
