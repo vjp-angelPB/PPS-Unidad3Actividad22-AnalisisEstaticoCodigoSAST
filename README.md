@@ -447,19 +447,4 @@ semgrep --config=files/custom-rules.yaml .
 - Integrar SAST en pipelines CI/CD es una buena práctica profesional recomendada por OWASP y la industria.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> Ángel Pérez Blanco
