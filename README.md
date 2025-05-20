@@ -429,8 +429,8 @@ Vamos a realizar el análisis estático sobre nuestro repositorio `semgrep-prueb
 ```bash
 semgrep --config=files/custom-rules.yaml .
 ```
-Como vemos nos aparece el aviso indicado en la regla.
 
+![](Images/img14.png)
 
 ---
 
@@ -451,19 +451,6 @@ por
 ```yaml
     - semgrep --config=files/custom-rules.yaml  --json --output=semgrep-results.json
 ```
-
-Al hacer un `git push` podemos ver como se ejecuta automáticament el `workflow`
-
-
-![](Images/img15.png)
-
-
-Si accedemos a los detalles y descargamos el archivo `semgrep-report` con el resultado en formato `JSON`, podemos ver el resultado de la ejecución:
-
-
-![](Images/img16.png)
-
-
 
 
 ## Recursos
